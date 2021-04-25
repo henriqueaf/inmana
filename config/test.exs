@@ -12,6 +12,14 @@ config :inmana, Inmana.Repo,
   hostname: "172.17.0.2",
   pool: Ecto.Adapters.SQL.Sandbox
 
+if System.get_env("GITHUB_ACTIONS") do
+  config :inmana, Inmana.Repo,
+    username: "postgres",
+    password: "postgres",
+    database: "inmana_test",
+    hostname: "localhost"
+end
+
 config :inmana, Inmana.Mailer, adapter: Bamboo.TestAdapter
 
 # We don't run a server during test. If one is required,
