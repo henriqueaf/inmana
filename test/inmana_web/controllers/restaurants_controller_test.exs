@@ -1,9 +1,9 @@
 defmodule InmanaWeb.RestaurantsControllerTest do
-  use InmanaWeb.ConnCase
+  use InmanaWeb.ConnCase, async: true
 
   describe "create/2" do
     test "when all params are valid, creates the restaurant", %{conn: conn} do
-      params = %{name: "Siri Cascudo", email: "siri@cascudo.com"}
+      params = params_for(:restaurant)
 
       response =
         conn
@@ -21,7 +21,7 @@ defmodule InmanaWeb.RestaurantsControllerTest do
     end
 
     test "when there are invalid params, returns an error", %{conn: conn} do
-      params = %{email: "siricascudocom"}
+      params = %{params_for(:restaurant) | email: "siricascudocom", name: ""}
       expected_response = %{"message" => %{"email" => ["has invalid format"], "name" => ["can't be blank"]}}
 
       response =

@@ -24,6 +24,9 @@ defmodule InmanaWeb.ConnCase do
       import Phoenix.ConnTest
       import InmanaWeb.ConnCase
 
+      # Import Factory module to use ExMachina methods and factories on tests
+      import Inmana.Factory
+
       alias InmanaWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
